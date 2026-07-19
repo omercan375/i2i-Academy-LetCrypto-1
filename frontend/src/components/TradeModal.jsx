@@ -70,9 +70,9 @@ export default function TradeModal({ asset, portfolio, onClose, onTraded }) {
     }
     setSubmitting(true)
     try {
-      // SELL_ALL: backend eldeki miktarla birebir esitlik bekliyor
+      // Sell All: backend'de ayri bir tip yok; eldeki miktarin tamami SELL olarak gonderilir
       const sendAmount = isSellAll ? holding.assetQuantity : numericAmount
-      await api.trade(asset.assetSymbol, tradeType, sendAmount)
+      await api.trade(asset.assetSymbol, isSellAll ? 'SELL' : tradeType, sendAmount)
       const verb = tradeType === 'BUY' ? 'Bought' : 'Sold'
       onTraded(`${verb} ${sendAmount} ${asset.assetSymbol} successfully.`)
       onClose()
