@@ -1,0 +1,19 @@
+#POST http://localhost:8080/api/transaction/trade
+#Content-Type: application/json
+#Authorization: Bearer 0bd69b47-8c4c-4bb1-a05d-758aa03975f8
+#
+#{
+#  "tradeType": "SELL",
+#  "cryptoAmount": 10,
+#  "assetSymbol": "ETH"
+#}
+
+### AI Query
+POST http://localhost:8080/api/ai/query
+Authorization: Bearer 0bd69b47-8c4c-4bb1-a05d-758aa03975f8
+Content-Type: application/json
+
+{
+  "query": "cüzdanım hakkında bilgi ver."
+}
+
