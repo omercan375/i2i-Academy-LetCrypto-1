@@ -1,5 +1,6 @@
 package org.example.i2iacademyletcrypto1.user_assets;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.example.i2iacademyletcrypto1.user_assets.abstract_class.AbstractUserAssetsController;
 import org.example.i2iacademyletcrypto1.user_assets.dto.PortfolioDto;
@@ -24,6 +25,7 @@ public class UserAssetsController implements AbstractUserAssetsController {
 
     @GetMapping("/portfolio")
     @Override
+    @Operation(summary = "user portfolio")
     public ResponseEntity<List<PortfolioDto>> getPortfolio(@RequestHeader("Authorization") String token){
         UsersTable findUser = usersService.findUserById(token);
         List<PortfolioDto> portfolio = userAssetsService.portfolio(findUser);

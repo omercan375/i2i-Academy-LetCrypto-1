@@ -11,7 +11,7 @@ import java.util.UUID;
 
 
 public interface UserAssetsRepo extends CrudRepository<UserAssetsTable, UUID> {
-    @Query("SELECT u FROM UserAssetsTable u where u.user.id=:userId")
+    @Query("SELECT u FROM UserAssetsTable u where u.user.id=:userId and u.quantity>0")
     List<UserAssetsTable> findByUserId(@Param("userId") UUID userId);
 
     @Query("SELECT u FROM UserAssetsTable u " +

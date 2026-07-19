@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 @RequiredArgsConstructor
@@ -20,11 +22,10 @@ public class WalletsService {
 
 
     /*create wallet for new customer*/
-    @Transactional
     public void createWallet(UsersTable user) {
         WalletsTable wallet = WalletsTable.builder()
                 .user(user)
-                .cashBalance(BigDecimal.valueOf(1000000000))
+                .cashBalance(BigDecimal.valueOf(ThreadLocalRandom.current().nextDouble(10_000, 100_000)).setScale(2, RoundingMode.HALF_UP))
                 .build();
         try {
             walletsRepo.save(wallet);
@@ -41,7 +42,7 @@ public class WalletsService {
         return findWallet;
     }
 
-    @Transactional
+
     public void buyAsset(UUID userId, BigDecimal totalAmount) {
         WalletsTable findWallet = findByUserId(userId);
 
@@ -56,7 +57,7 @@ public class WalletsService {
             throw new InsufficientBalanceException("INSUFFICENT BALANCE");
         }
     }
-    @Transactional
+
     public void sellAsset(UUID userId, BigDecimal totalAmount) {
         WalletsTable findWallet = findByUserId(userId);
 

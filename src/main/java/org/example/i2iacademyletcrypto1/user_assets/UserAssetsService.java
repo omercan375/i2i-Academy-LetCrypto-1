@@ -44,7 +44,7 @@ public class UserAssetsService implements AbstractUserAssetsService {
                 throw new ResourceNotFoundException("Asset not found");
             }
             /*calculate total price of asset*/
-            BigDecimal totalWorth =assetPrice.multiply(asset.getQuantity());
+            BigDecimal totalWorth = assetPrice.multiply(asset.getQuantity());
 
             PortfolioDto portfolioDto = PortfolioDto.builder()
                     .assetSymbol(asset.getAsset().getSymbol())
@@ -65,9 +65,9 @@ public class UserAssetsService implements AbstractUserAssetsService {
         return portfolio;
 
     }
-    @Transactional
+
     @Override
-    public void buyAsset(UsersTable user, AssetsTable asset,BigDecimal quantity) {
+    public void buyAsset(UsersTable user, AssetsTable asset, BigDecimal quantity) {
         /*USER DA BU HİSSE DAHA ÖNCE VARMI YOKMU KONTROL*/
         UserAssetsTable findUserAsset = userAssetsRepo.findUserAssets(user.getId(), asset.getId());
         if (findUserAsset != null) {
@@ -90,37 +90,23 @@ public class UserAssetsService implements AbstractUserAssetsService {
             }
         }
     }
-    @Transactional
+
     @Override
-    public void sellAsset(UsersTable user, AssetsTable asset,BigDecimal quantity){
+    public void sellAsset(UsersTable user, AssetsTable asset, BigDecimal quantity) {
         UserAssetsTable findUserAsset = userAssetsRepo.findUserAssets(user.getId(), asset.getId());
-        if (findUserAsset == null){
+        if (findUserAsset == null) {
             throw new ResourceNotFoundException("ASSET NOT FOUND");
         }
 
-        if(findUserAsset.getQuantity().compareTo(quantity) < 0){
+        if (findUserAsset.getQuantity().compareTo(quantity) < 0) {
             throw new InsufficientBalanceException("INSUFFICIENT BALANCE");
         }
         BigDecimal newQuantity = findUserAsset.getQuantity().subtract(quantity);
-        int updateQuantity = userAssetsRepo.updateQuantity(newQuantity,findUserAsset.getId(),findUserAsset.getVersion());
-        if (updateQuantity == 0){
+        int updateQuantity = userAssetsRepo.updateQuantity(newQuantity, findUserAsset.getId(), findUserAsset.getVersion());
+        if (updateQuantity == 0) {
             throw new UpdateException("CANT UPDATE ASSET");
         }
     }
-
-    @Transactional
-    @Override
-    public void sellAllAsset(UsersTable user,AssetsTable asset,BigDecimal quantity){
-        UserAssetsTable findUserAsset = userAssetsRepo.findUserAssets(user.getId(), asset.getId());
-        if (findUserAsset == null){
-            throw new ResourceNotFoundException("ASSET NOT FOUND");
-        }
-        if(findUserAsset.getQuantity().compareTo(quantity) == 0){
-            userAssetsRepo.delete(findUserAsset);
-
-        }else {
-            throw new InsufficientBalanceException("INSUFFICIENT BALANCE");
-        }
-    }
-
 }
+
+

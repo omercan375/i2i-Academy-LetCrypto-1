@@ -11,6 +11,5 @@ public interface AbstractUserAssetsService {
     public List<PortfolioDto> portfolio(UsersTable user);
     public void buyAsset(UsersTable user, AssetsTable asset, BigDecimal quantity);
     public void sellAsset(UsersTable user, AssetsTable asset,BigDecimal quantity);
-    public void sellAllAsset(UsersTable user,AssetsTable asset,BigDecimal quantity);
 }
 

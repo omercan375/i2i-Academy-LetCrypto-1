@@ -1,6 +1,7 @@
 package org.example.i2iacademyletcrypto1.auth;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.http.protocol.HTTP;
 import org.example.i2iacademyletcrypto1.auth.abstract_class.AbstractAuthController;
 import org.example.i2iacademyletcrypto1.auth.abstract_class.AbstractAuthService;
 import org.example.i2iacademyletcrypto1.auth.dto.CreateAccountDto;

@@ -1,6 +1,6 @@
 package org.example.i2iacademyletcrypto1.trade_transaction;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
+
 import lombok.RequiredArgsConstructor;
 import org.example.i2iacademyletcrypto1.assets.AssetsService;
 import org.example.i2iacademyletcrypto1.assets.AssetsTable;
@@ -53,19 +53,19 @@ public class TradeTransactionService implements AbstractTradeTransactionService 
                 assetPrice.multiply(tradeDto.getCryptoAmount());
 
         switch (tradeDto.getTradeType()) {
-            case BUY -> {
+            case BUY :
                 walletsService.buyAsset(user.getId(), totalAmount);
                 userAssetsService.buyAsset(user,asset, tradeDto.getCryptoAmount());
-            }
+                break;
 
-            case SELL -> {
+
+            case SELL :
                 userAssetsService.sellAsset(user,asset,tradeDto.getCryptoAmount());
                 walletsService.sellAsset(user.getId(), totalAmount);
-            }
-            case SELL_ALL -> {
-                userAssetsService.sellAllAsset(user,asset,tradeDto.getCryptoAmount());
-                walletsService.sellAsset(user.getId(), totalAmount);
-                }
+                break;
+
+
+
         }
 
         TradeTransactionTable transaction =
