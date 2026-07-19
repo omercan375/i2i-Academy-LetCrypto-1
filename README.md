@@ -16,6 +16,8 @@
 
 *Register with one click — every new account starts with a randomized cash balance, ready to trade.*
 
+<img src="docs/screenshots/dashboard.png" alt="LetCrypto dashboard — live market, portfolio and AI assistant" width="100%">
+
 </div>
 
 ---
@@ -30,6 +32,18 @@
 - ⚙️ **Account management** — change username, email and password from an in-app settings modal
 - 🧾 **Full trade history** — an immutable ledger of every executed order with execution price and totals
 - 📉 **Price history** — periodic snapshots persisted to PostgreSQL, rendered as sparkline charts in the trade modal
+
+## 📸 Screenshots
+
+| Trading — conditional Buy / Sell / Sell All with live sparkline | AI assistant — Gemini analysis of your real portfolio |
+|:---:|:---:|
+| <img src="docs/screenshots/trade-modal.png" alt="Trade modal"> | <img src="docs/screenshots/ai-chat.png" alt="AI chat"> |
+
+| Authentication | Swagger / OpenAPI |
+|:---:|:---:|
+| <img src="docs/screenshots/login.png" alt="Login page"> | <img src="docs/screenshots/swagger.png" alt="Swagger UI"> |
+
+<img src="docs/screenshots/history.png" alt="Trade history ledger" width="100%">
 
 ## 🏗️ Architecture
 
